@@ -8,6 +8,9 @@ class Post(models.Model):
     created_date = models.DateTimeField(default = timezone.now)
     published_date = models.DateTimeField(blank = True, null = True)
 
+    day_week = (('L', "Lunes"), ('Ma', "Martes"), ('Mi', "Miercules")) 
+    day = models.CharField(max_length = 10, choices = day_week, default = 'L')
+
     def publish(self):
         self.published_date = timezone.now()
         self.save()
