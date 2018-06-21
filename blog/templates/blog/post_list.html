@@ -1,32 +1,12 @@
-<html>
-  <head>
-    <title>Django Denys blog</title>
-  </head>
-  <body>
-    <div>
-      <h1><a href="/">Django Denys</a></h1>
-    </div>
-
-      {% for post in posts %}
-        <div>
-          <p>published: {{ post.published_date }}</p>
-          <h1><a href = "">{{ post.title }}</a></h1>
-          <p>{{ post.text|linebreaksbr }}</p>
-        </div>
-      {% endfor %}
-    <!--
-    <div>
-      <p>published: 14.06.2014, 12:14</p>
-      <h2><a href="">La plaza de Tiannanmén</a></h2>
-      <p>La fue construida dentro del plan urbanístico de Pekín en 1949 y fue en simbolo de la nueva China. Es el mayor plaza en el mundo.</p>
-    </div>
-    -->
-  <!--
-    <div>
-      <p>published: 14.06.2014, 12:14</p>
-      <h2><a href="">El Palacio de Verano</a></h2>
-      <p>Es un parque está a unos doce kilometros del centro de Pekín. Desde 1998 está considerado como Patrimonio de la Humanidad por la UNESCO. La mayoría de los edificios que forman el Palacio están siruados entre el lago Kunming y la colina de la longevidad. Hay residencias, teatros, pagodas, puertas, muellas.</p>
-    </div>
-  -->
-  </body>
-</html>
+{% extends 'blog/base.html' %}
+        {% block content %}
+          {% for post in posts %}
+            <div class="post">
+              <div class="date">
+                {{ post.published_date }}
+              </div>
+              <h1><a href = "{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+              <p>{{ post.text|linebreaksbr }}</p>
+            </div>
+          {% endfor %}
+        {% endblock %}
